@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react"; 
 import useGlobalReducer from "../hooks/useGlobalReducer";
+import { useNavigate } from "react-router-dom";
 
 export const Character = ({ people }) => {
 
     const {store, dispatch} = useGlobalReducer()
     const [characterDetails, setCharacterDetails] = useState([]);
+    const navigate = useNavigate();
 
     async function apiDetalles(id) {
         try {
@@ -31,7 +33,7 @@ export const Character = ({ people }) => {
         
         const isFavorite = store.favorites.some(item => item.uid == favorite.uid)
         console.log(isFavorite);
-        let color = "red"
+        
         if (isFavorite) {
             dispatch({type: "set_favorites", payload: {favorites: store.favorites.filter(item => item.uid != favorite.uid)}})
                                        
@@ -69,7 +71,7 @@ export const Character = ({ people }) => {
                             Eye Color: {characterDetails.eye_color ? characterDetails.eye_color : "N/A"}
                         </p>
                         <div className="d-flex justify-content-between">
-                            <a href="#" className="btn btn-primary">Go somewhere</a>
+                            <button onClick={()=>{navigate(`/characterinfo/${people.uid}`)}} href="#" className="btn btn-primary">Go somewhere</button>
                             <button onClick={() => addFavorite(people)} className={`btn ${isCurrentCharacterFavorite ? 'text-danger' : 'text-secondary'}`}><i class="fa-solid fa-heart" ></i></button>
                         </div>
                 
