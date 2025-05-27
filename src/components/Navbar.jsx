@@ -1,14 +1,31 @@
 import { Link } from "react-router-dom";
+import useGlobalReducer from "../hooks/useGlobalReducer";
 
 export const Navbar = () => {
+	const { store, dispatch } = useGlobalReducer()
+
 
 	return (
-		<nav className="navbar navbar-light bg-light">
+		<nav className="navbar navbar-light bg-dark">
 			<div className="container">
 				<Link to="/">
-					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
+					<img className="logo" src="https://brandemia.org/contenido/subidas/2021/05/portada-starwars-imagenes-brandemia-blog-1000x670.jpg" alt="StarWars Logo" />
 				</Link>
 				<div className="ml-auto">
+
+					<div className="dropdown">
+						<button className="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							Favorites ({store.favorites.length})
+						</button>
+						<ul className="dropdown-menu">
+							{store.favorites && store.favorites.length > 0 ? store.favorites.map((favorite, index) => {
+								return (<li key={index}>{favorite.name}</li>)
+							}) : <li>No hay favoritos</li>}
+
+						</ul>
+					</div>
+
+
 					<Link to="/demo">
 						<button className="btn btn-primary">Check the Context in action</button>
 					</Link>
