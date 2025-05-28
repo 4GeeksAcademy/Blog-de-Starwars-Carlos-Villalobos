@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom"
 import { Character } from "../components/Character";
 
 export const CharacterInfo = () => {
-    const { uid } = useParams();
+    const { uid, name } = useParams();
     // const { store, dispatch } = useGlobalReducer();
     const [Info, setInfo] = useState();
 
     function infoApi() {
-        fetch("https://www.swapi.tech/api/people/" + uid)
+        fetch("https://www.swapi.tech/api/planet/" + uid)
             .then(res => res.json())
             .then(data => setInfo(data.result.properties))
             .catch(err => console.error(err))
@@ -23,7 +23,7 @@ export const CharacterInfo = () => {
             <div className="row w-100 my-4 d-flex justify-content-between ">
                 <div className="col-md-6">
                     <img
-                        src={`https://raw.githubusercontent.com/breatheco-de/swapi-images/refs/heads/master/public/images/people/${uid}.jpg`}
+                        src={`https://raw.githubusercontent.com/breatheco-de/swapi-images/refs/heads/master/public/images/planet/${uid}.jpg`}
                         className="img-info"
                     />
                 </div>
@@ -41,27 +41,27 @@ export const CharacterInfo = () => {
                 
                   <div className="col-md-2">
                     <h4>Gender</h4>
-                    <p>{Info && Info.gender}</p>
+                    <p>{Info && Info.climate}</p>
                 </div>
                
                   <div className="col-md-2">
                     <h4>Birh year</h4>
-                    <p>{Info && Info.birth_year}</p>
+                    <p>{Info && Info.created}</p>
                 </div>
 
                   <div className="col-md-2">
                     <h4>Height</h4>
-                    <p>{Info && Info.height}</p>
+                    <p>{Info && Info.diameter}</p>
                 </div>
 
                   <div className="col-md-2">
                     <h4>Eye Color</h4>
-                    <p>{Info && Info.eye_color}</p>
+                    <p>{Info && Info.gravity}</p>
                 </div>
 
                   <div className="col-md-2">
                     <h4>Hair color</h4>
-                    <p>{Info && Info.hair_color}</p>
+                    <p>{Info && Info.orbital_period}</p>
                 </div>
 
             </div>

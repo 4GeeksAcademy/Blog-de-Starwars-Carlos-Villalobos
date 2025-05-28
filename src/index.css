@@ -11,3 +11,9 @@ body{
 .fa-heart{
     background-color: none;
 }
+
+@media (min-width: 300px) and (max-width: 700px) {
+    .img-info{
+    width: 350px;
+}
+}
