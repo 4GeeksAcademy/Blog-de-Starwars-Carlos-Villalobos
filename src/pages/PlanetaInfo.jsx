@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { Character } from "../components/Character";
 
-export const CharacterInfo = () => {
-    const { uid, name } = useParams();
+export const PlanetaInfo = () => {
+    const { uid } = useParams();
     // const { store, dispatch } = useGlobalReducer();
     const [Info, setInfo] = useState();
 
@@ -40,27 +39,27 @@ export const CharacterInfo = () => {
                 </div>
                 
                   <div className="col-md-2">
-                    <h4>Gender</h4>
+                    <h4>Climate</h4>
                     <p>{Info && Info.climate}</p>
                 </div>
                
                   <div className="col-md-2">
-                    <h4>Birh year</h4>
+                    <h4>Created</h4>
                     <p>{Info && Info.created}</p>
                 </div>
 
                   <div className="col-md-2">
-                    <h4>Height</h4>
+                    <h4>Diameter</h4>
                     <p>{Info && Info.diameter}</p>
                 </div>
 
                   <div className="col-md-2">
-                    <h4>Eye Color</h4>
+                    <h4>Gravity</h4>
                     <p>{Info && Info.gravity}</p>
                 </div>
 
                   <div className="col-md-2">
-                    <h4>Hair color</h4>
+                    <h4>Orbital period</h4>
                     <p>{Info && Info.orbital_period}</p>
                 </div>
 

@@ -3,6 +3,7 @@ import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import React, { useEffect } from "react";
 import { Character } from "../components/Character.jsx";
 import { Planets } from "../components/Planets.jsx";
+import { Vehicle } from "../components/Vehicle.jsx";
 
 export const Home = () => {
 
@@ -33,10 +34,23 @@ export const Home = () => {
 			.catch(err => console.error(err))
 	}
 
+	function apiVehicle() {
+		fetch(api + "vehicles")
+			.then(res => res.json())
+			.then((data) => {
+				dispatch({
+					type: "getVehicle",
+					payload: { vehicle: data.results }
+				})
+			})
+			.catch(err => console.error(err))
+	}
+
 
 	useEffect(() => {
 		apiPeople()
 		apiPlanets()
+		apiVehicle()
 	}, [])
 
 
@@ -45,14 +59,19 @@ export const Home = () => {
 	return (
 		<div >
 			<div className="text-center d-flex flex-row overflow-scroll mt-5">
-			{store.characters.map((value, index) => {
-				return (<Character key={index} people={value} />)
-			})}
+				{store.characters.map((value, index) => {
+					return (<Character key={index} people={value} />)
+				})}
 			</div>
 			<div className="text-center d-flex flex-row overflow-scroll mt-5">
-			{store.planets.map((value, index) => {
-				return (<Planets key={index} planeta={value} />)
-			})}
+				{store.planets.map((value, index) => {
+					return (<Planets key={index} planeta={value} />)
+				})}
+			</div>
+			<div className="text-center d-flex flex-row overflow-scroll mt-5">
+				{store.vehicles.map((value, index) => {
+					return (<Vehicle key={index} vehicle={value} />)
+				})}
 			</div>
 
 		</div>
