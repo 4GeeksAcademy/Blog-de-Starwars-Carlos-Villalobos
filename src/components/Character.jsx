@@ -21,7 +21,6 @@ export const Character = ({ people }) => {
     function addFavorite(favorite) {
 
         const isFavorite = store.favorites.some(item => item.name == favorite.name)
-        console.log(isFavorite);
 
         if (isFavorite) {
             dispatch({ type: "set_favorites", payload: { favorites: store.favorites.filter(item => item.name != favorite.name) } })
