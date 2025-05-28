@@ -18,8 +18,9 @@ export const Navbar = () => {
 							Favorites ({store.favorites.length})
 						</button>
 						<ul className="dropdown-menu">
+							
 							{store.favorites && store.favorites.length > 0 ? store.favorites.map((favorite, index) => {
-								return (<Link to={`/characterinfo/${favorite.uid}`}><li key={index}>{favorite.name}</li></Link> )
+								return (<Link to={`/${favorite.type}info/${favorite.uid}`}><li key={index}>{favorite.name}</li></Link> )
 							}) : <li>No hay favoritos</li>}
 
 						</ul>

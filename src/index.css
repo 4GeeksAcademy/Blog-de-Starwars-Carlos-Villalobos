@@ -17,3 +17,9 @@ body{
     width: 350px;
 }
 }
+
+@media (min-width: 700px) and (max-width: 4000px) {
+    .img-info{
+    width: 500px;
+}
+}

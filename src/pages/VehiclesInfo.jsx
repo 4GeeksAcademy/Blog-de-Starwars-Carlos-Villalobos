@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 
-export const PlanetaInfo = () => {
+export const VehiclesInfo = () => {
     const { uid } = useParams();
     // const { store, dispatch } = useGlobalReducer();
     const [Info, setInfo] = useState();
 
     function infoApi() {
-        fetch("https://www.swapi.tech/api/planets/" + uid)
+        fetch("https://www.swapi.tech/api/vehicles/" + uid)
             .then(res => res.json())
             .then(data => setInfo(data.result.properties))
             .catch(err => console.error(err))
@@ -22,8 +22,8 @@ export const PlanetaInfo = () => {
             <div className="row w-100 my-4 d-flex justify-content-between ">
                 <div className="col-md-6">
                     <img
-                        src={`https://raw.githubusercontent.com/breatheco-de/swapi-images/refs/heads/master/public/images/planets/${uid}.jpg`}
-                        className="img-info"
+                        src={`https://raw.githubusercontent.com/breatheco-de/swapi-images/refs/heads/master/public/images/vehicles/${uid}.jpg`}
+                        className="img-info vehicle-img"
                     />
                 </div>
                 <div className="col-md-6 text-light">
@@ -40,27 +40,27 @@ export const PlanetaInfo = () => {
                 
                   <div className="col-md-2">
                     <h4>Climate</h4>
-                    <p>{Info && Info.climate}</p>
+                    <p>{Info && Info.cargo_capacity}</p>
                 </div>
                
                   <div className="col-md-2">
                     <h4>Created</h4>
-                    <p>{Info && Info.created}</p>
+                    <p>{Info && Info.consumables}</p>
                 </div>
 
                   <div className="col-md-2">
                     <h4>Diameter</h4>
-                    <p>{Info && Info.diameter}</p>
+                    <p>{Info && Info.cost_in_credits}</p>
                 </div>
 
                   <div className="col-md-2">
                     <h4>Gravity</h4>
-                    <p>{Info && Info.gravity}</p>
+                    <p>{Info && Info.model}</p>
                 </div>
 
                   <div className="col-md-2">
                     <h4>Orbital period</h4>
-                    <p>{Info && Info.orbital_period}</p>
+                    <p>{Info && Info.crew}</p>
                 </div>
 
             </div>

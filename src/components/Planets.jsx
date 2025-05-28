@@ -19,18 +19,18 @@ export const Planets = ({ planeta }) => {
 
     function addFavorite(favorite) {
 
-        const isFavorite = store.favorites.some(item => item.uid == favorite.uid)
+        const isFavorite = store.favorites.some(item => item.name == favorite.name)
         console.log(isFavorite);
 
         if (isFavorite) {
-            dispatch({ type: "set_favorites", payload: { favorites: store.favorites.filter(item => item.uid != favorite.uid) } })
+            dispatch({ type: "set_favorites", payload: { favorites: store.favorites.filter(item => item.name != favorite.name) } })
 
         } else {
-            dispatch({ type: "set_favorites", payload: { favorites: [...store.favorites, favorite] } })
+            dispatch({ type: "set_favorites", payload: { favorites: [...store.favorites, { ...favorite, type: 'planeta' } ] } })
 
         }
     }
-
+    
 
     useEffect(() => {
 
@@ -39,7 +39,7 @@ export const Planets = ({ planeta }) => {
         }
     }, [planeta.uid]);
 
-    const isCurrentCharacterFavorite = store.favorites.some(item => item.uid === planeta.uid);
+    const isCurrentCharacterFavorite = store.favorites.some(item => item.name === planeta.name);
 
     return (
         <div className="card m-2" style={{ width: "18rem", flexShrink: 0 }}>
@@ -62,7 +62,6 @@ export const Planets = ({ planeta }) => {
                     <button onClick={() => { navigate(`/planetainfo/${planeta.uid}`) }} href="#" className="btn btn-primary">Go somewhere</button>
                     <button onClick={() => addFavorite(planeta)} className={`btn ${isCurrentCharacterFavorite ? 'text-danger' : 'text-secondary'}`}><i className="fa-solid fa-heart" ></i></button>
                 </div>
-
 
             </div>
         </div>

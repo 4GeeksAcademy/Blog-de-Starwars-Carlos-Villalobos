@@ -20,14 +20,14 @@ export const Vehicle = ({ vehicle }) => {
 
     function addFavorite(favorite) {
 
-        const isFavorite = store.favorites.some(item => item.uid == favorite.uid)
+        const isFavorite = store.favorites.some(item => item.name == favorite.name)
         console.log(isFavorite);
 
         if (isFavorite) {
-            dispatch({ type: "set_favorites", payload: { favorites: store.favorites.filter(item => item.uid != favorite.uid) } })
+            dispatch({ type: "set_favorites", payload: { favorites: store.favorites.filter(item => item.name != favorite.name) } })
 
         } else {
-            dispatch({ type: "set_favorites", payload: { favorites: [...store.favorites, favorite] } })
+            dispatch({ type: "set_favorites", payload: { favorites: [...store.favorites,  { ...favorite, type: 'vehicles' }] } })
 
         }
     }
@@ -40,7 +40,7 @@ export const Vehicle = ({ vehicle }) => {
         }
     }, [vehicle.uid]);
 
-    const isCurrentCharacterFavorite = store.favorites.some(item => item.uid === vehicle.uid);
+    const isCurrentCharacterFavorite = store.favorites.some(item => item.name === vehicle.name);
 
     return (
         <div className="card m-2" style={{ width: "18rem", flexShrink: 0 }}>
@@ -54,13 +54,13 @@ export const Vehicle = ({ vehicle }) => {
 
 
                 <p className="card-text">
-                    Gender: {vehicleDetails.gender ? vehicleDetails.gender : "N/A"}
+                    Cargo capacity: {vehicleDetails.cargo_capacity ? vehicleDetails.cargo_capacity : "N/A"}
                 </p>
                 <p className="card-text">
-                    Eye Color: {vehicleDetails.eye_color ? vehicleDetails.eye_color : "N/A"}
+                    Consumables: {vehicleDetails.consumables ? vehicleDetails.consumables : "N/A"}
                 </p>
                 <div className="d-flex justify-content-between">
-                    <button onClick={() => { navigate(`/characterinfo/${vehicle.uid}`) }} href="#" className="btn btn-primary">Go somewhere</button>
+                    <button onClick={() => { navigate(`/vehiclesinfo/${vehicle.uid}`) }} href="#" className="btn btn-primary">Go somewhere</button>
                     <button onClick={() => addFavorite(vehicle)} className={`btn ${isCurrentCharacterFavorite ? 'text-danger' : 'text-secondary'}`}><i className="fa-solid fa-heart" ></i></button>
                 </div>
 
